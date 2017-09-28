@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bit6 Web Demo">
+    <meta name="author" content="Bit6">
+    <title>Bit6 with Parse auth</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div id="welcome">
+        <div class="intro"><h1>Bit6 with Parse auth</h1>
+            <p class="lead">Authenticate as a Parse user</p></div>
+        <div class="row">
+            <div class="col-sm-offset-3 col-md-offset-4 col-sm-6 col-md-4">
+                <div class="bg-danger" id="authError"></div>
+                <form role="form">
+                    <div class="form-group"><input type="text" class="form-control" id="authUsername" placeholder="Username"></div>
+                    <div class="form-group"><input type="password" class="form-control" id="authPassword" placeholder="Password"></div>
+                    <button class="btn btn-primary" id="loginButton">Login</button>
+                    <button class="btn btn-info" id="signupButton">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <div style="margin-top: 20px"><p>Bit6 auth result
+            <pre id="authResult"></pre>
+        </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//www.parsecdn.com/js/parse-latest.js"></script>
+    <script src="../common/bit6.min.js"></script>
+    <script>Parse.initialize("kC9jO1ea3baZkPSZpoYRgFxmcIwy2exYQuxKI8jh", "CmEyCT64vfEVHDXOd0o7aQSUUZujaQ9eyMNVe8Tv");
+
+    function signup(d, c, a) {
+        var b = new Parse.User();
+        b.set("username", d);
+        b.set("password", c);
+        b.signUp(null, {
+            success: function (e) {
+                console.log("Signed up:", e);
+                getBit6AuthParams(a)
+            }, error: function (e, f) {
+                console.log("Signup err", f);
+                a(f)
+            }
+        })
+    }
+
+    function login(c, b, a) {
+        Parse.User.logIn(c, b, {
+            success: function (d) {
+                console.log("Logged in:", d);
+                getBit6AuthParams(a)
+            }, error: function (d, e) {
+                console.log("Login err", e);
+                a(e)
+            }
+        })
+    }
+
+    function getBit6AuthParams(a) {
+        var b = {};
+        Parse.Cloud.run("bit6_auth", b, {
+            success: function (c) {
+                console.log("Cloud result", c);
+                a(null, c)
+            }, error: function (c) {
+                console.log("Cloud error", c)
+            }
+        })
+    }
+
+    $(function () {
+        var a = "4oap-2lvnm";
+        var c = "prod";
+        var d = new bit6.Client({apikey: a, env: c});
+        d.session.on("auth", function () {
+            $("#authResult").html(JSON.stringify(d.session.save(), null, 2))
+        });
+
+        function b(e) {
+            var f = e ? signup : login;
+            var h = $("#authUsername").val();
+            var g = $("#authPassword").val();
+            f(h, g, function (j, i) {
+                if (j) {
+                    console.log(j)
+                } else {
+                    d.session.external(i, function (k) {
+                        console.log("Bit6 auth finished err: ", k)
+                    })
+                }
+            });
+            return false
+        }
+
+        $("#signupButton").click(function () {
+            return b(true)
+        });
+        $("#loginButton").click(function () {
+            return b(false)
+        });
+        window.bx = d
+    });</script>
+</body>
+</html>
+
+

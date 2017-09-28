@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bit6 Web Demo">
+    <meta name="author" content="Bit6">
+    <title>Bit6 OAuth with REST</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div id="welcome">
+        <div class="intro"><h1>Bit6 OAuth with REST</h1>
+            <p class="lead">Sign in with 3rd party OAuth providers using Bit6 REST API</p></div>
+        <button type="button" class="btn btn-primary" id="googleButton">Google</button>
+        <button type="button" class="btn btn-primary" id="facebookButton">Facebook</button>
+        <button type="button" class="btn btn-primary" id="zendeskButton">Zendesk</button>
+        <button type="button" class="btn btn-primary" id="deskcomButton">Desk.com</button>
+        <button type="button" class="btn btn-default" id="restartButton">Restart</button>
+        <div style="margin-top: 20px"><p>Response from OAuth provider
+            <pre id="authResult"></pre>
+            <p>Bit6: GET /me?embed=identities
+            <pre id="apiResult"></pre>
+        </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>var baseApiUrl = "https://api.bit6.com";
+    var apikey = "4oap-2lvnm";
+    var t = window.location.href;
+    if (t.indexOf("dev") > 0) {
+        apikey = "3y9-26ufj";
+        baseApiUrl = "https://api.b6dev.net";
+        if (window.location.protocol.indexOf("https") < 0) {
+            window.location.href = "https://development--bit6-demo.divshot.io/auth.html"
+        }
+    } else {
+        if (t.indexOf("localhost") > 0) {
+            apikey = "3y9-26ufj";
+            baseApiUrl = "http://localhost:3000"
+        }
+    }
+
+    function getAuthInfo(b, a) {
+        $.get(baseApiUrl + "/auth/1/info?apikey=" + b, function (d, c) {
+            console.log("getAuthInfo status:", c);
+            a(null, d)
+        })
+    }
+
+    function prepareGoogle(b, c, e) {
+        var a = c.client_id;
+        $("#googleButton").click(function () {
+            startGoogleAuth(a)
+        });
+        var d = getGoogleAuthCode(e);
+        if (d) {
+            processGoogleAuthCode(b, a, d, function (f, g) {
+                if (f) {
+                    return
+                }
+                console.log("Got b6 google resp", g);
+                processAuthComplete(b, g)
+            })
+        }
+    }
+
+    function startGoogleAuth(c) {
+        var e = "https://accounts.google.com/o/oauth2/auth";
+        var d = ["openid", "profile", "email"];
+        var f = window.location.href.split("?")[0];
+        var b = [["client_id", c], ["redirect_uri", f], ["scope", d.join(" ")], ["response_type", "code"]];
+        var a = b.map(function (g) {
+            return g[0] + "=" + encodeURIComponent(g[1])
+        }).join("&");
+        window.location.href = e + "?" + a
+    }
+
+    function getGoogleAuthCode(a) {
+        if (!a.code || !a.session_state) {
+            return null
+        }
+        return a.code
+    }
+
+    function processGoogleAuthCode(c, a, d, b) {
+        var f = window.location.href.split("?")[0];
+        var e = {clientId: a, redirectUri: f, code: d, apikey: c};
+        $.post(baseApiUrl + "/auth/1/google", e, function (h, g) {
+            console.log("Bit6 google status:", g);
+            b(null, h)
+        })
+    }
+
+    function prepareFacebook(b, c, e) {
+        var a = c.client_id;
+        $("#facebookButton").click(function () {
+            startFacebookAuth(a)
+        });
+        var d = getFacebookAuthCode(e);
+        if (d) {
+            processFacebookAuthCode(b, a, d, function (f, g) {
+                if (f) {
+                    return
+                }
+                console.log("Got b6 fb resp", g);
+                processAuthComplete(b, g)
+            })
+        }
+    }
+
+    function startFacebookAuth(c) {
+        var e = "https://www.facebook.com/dialog/oauth";
+        var d = ["public_profile", "user_friends", "email"];
+        var f = window.location.href.split("?")[0];
+        var b = [["client_id", c], ["redirect_uri", f], ["scope", d.join(",")], ["response_type", "code"]];
+        var a = b.map(function (g) {
+            return g[0] + "=" + encodeURIComponent(g[1])
+        }).join("&");
+        window.location.href = e + "?" + a
+    }
+
+    function getFacebookAuthCode(a) {
+        if (!a.code || a.session_state || a.state) {
+            return null
+        }
+        return a.code
+    }
+
+    function processFacebookAuthCode(c, a, d, b) {
+        var f = window.location.href.split("?")[0];
+        var e = {clientId: a, redirectUri: f, code: d, apikey: c};
+        $.post(baseApiUrl + "/auth/1/facebook", e, function (h, g) {
+            console.log("Bit6 fb status:", g);
+            b(null, h)
+        })
+    }
+
+    function prepareZendesk(b, c, f) {
+        var a = c.client_id;
+        var e = c.subdomain;
+        $("#zendeskButton").click(function () {
+            startZendeskAuth(a, e)
+        });
+        var d = getZendeskAuthCode(f);
+        if (d) {
+            processZendeskAuthCode(b, a, d, e, function (g, h) {
+                if (g) {
+                    return
+                }
+                console.log("Got b6 zd resp", h);
+                processAuthComplete(b, h)
+            })
+        }
+    }
+
+    function startZendeskAuth(c, e) {
+        var f = "https://" + e + ".zendesk.com/oauth/authorizations/new";
+        var d = ["read", "write"];
+        var g = window.location.href.split("?")[0];
+        var b = [["client_id", c], ["redirect_uri", g], ["scope", d.join(" ")], ["response_type", "code"], ["state", "zendesk"]];
+        var a = b.map(function (h) {
+            return h[0] + "=" + encodeURIComponent(h[1])
+        }).join("&");
+        window.location.href = f + "?" + a
+    }
+
+    function getZendeskAuthCode(a) {
+        if (!a.code || !a.state || "zendesk" != a.state) {
+            return null
+        }
+        return a.code
+    }
+
+    function processZendeskAuthCode(c, a, d, f, b) {
+        var g = window.location.href.split("?")[0];
+        var e = {clientId: a, redirectUri: g, code: d, apikey: c, subdomain: f, scope: "read write"};
+        $.post(baseApiUrl + "/auth/1/zendesk", e, function (i, h) {
+            console.log("Bit6 zd status:", h);
+            b(null, i)
+        })
+    }
+
+    function prepareDeskcom(a, b, e) {
+        var d = b.subdomain;
+        $("#deskcomButton").click(function () {
+            startDeskcomAuth(a, d)
+        });
+        var c = getDeskcomTokenAndVerifier(e);
+        console.log("Parse Desk.com token verifier: ", c);
+        if (c) {
+            processDeskcomTokenAndVerifier(a, c.oauth_token, c.oauth_verifier, d, function (f, g) {
+                if (f) {
+                    return
+                }
+                console.log("Got b6 desk resp", g);
+                processAuthComplete(a, g)
+            })
+        }
+    }
+
+    function startDeskcomAuth(a, b) {
+        getRequestToken(a, b, function (d, c) {
+            console.log("Bit6 desk got reqToken", c);
+            if (c && c.redirect) {
+                window.location.href = c.redirect
+            }
+        })
+    }
+
+    function getRequestToken(b, d, a) {
+        var e = window.location.href.split("?")[0] + "?state=deskcom";
+        var c = {redirectUri: e, apikey: b, subdomain: d,};
+        $.post(baseApiUrl + "/auth/1/deskcom", c, function (g, f) {
+            console.log("Bit6 desk reqToken status=", f);
+            a(null, g)
+        })
+    }
+
+    function getDeskcomTokenAndVerifier(a) {
+        if (!a || !a.oauth_token || !a.oauth_verifier) {
+            return null
+        }
+        return a
+    }
+
+    function processDeskcomTokenAndVerifier(c, d, a, f, b) {
+        var e = {oauth_token: d, oauth_verifier: a, apikey: c, subdomain: f};
+        $.post(baseApiUrl + "/auth/1/deskcom", e, function (h, g) {
+            console.log("Bit6 desk doit status:", g);
+            b(null, h)
+        })
+    }
+
+    function processAuthComplete(a, b) {
+        $("#authResult").html(JSON.stringify(b, null, 4));
+        var c = {_method: "GET", _auth: "bearer " + b.token};
+        $.post(baseApiUrl + "/app/1/me?embed=identities&apikey=" + a, c, function (e, d) {
+            console.log("GET /me status=", d, "resp=", e);
+            $("#apiResult").html(JSON.stringify(e, null, 4))
+        })
+    }
+
+    $(function () {
+        $("#restartButton").click(function () {
+            window.location.href = window.location.href.split("?")[0]
+        });
+        var b = {};
+        var a = window.location.href.split("?");
+        if (a.length == 2) {
+            a = a[1].split("&");
+            a.map(function (c) {
+                var d = c.split("=");
+                b[d[0]] = d[1]
+            });
+            console.log("location.href query params", b)
+        }
+        getAuthInfo(apikey, function (c, d) {
+            if (c) {
+                return alert("getAuthInfo err=", c)
+            }
+            console.log("authInfo:", d);
+            if (d.google) {
+                prepareGoogle(apikey, d.google, b)
+            }
+            if (d.facebook) {
+                prepareFacebook(apikey, d.facebook, b)
+            }
+            if (d.zendesk) {
+                prepareZendesk(apikey, d.zendesk, b)
+            }
+            if (d.deskcom) {
+                prepareDeskcom(apikey, d.deskcom, b)
+            }
+        })
+    });</script>
+</body>
+</html>
+
+

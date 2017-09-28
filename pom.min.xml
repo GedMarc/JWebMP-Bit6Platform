@@ -1,20 +1,16 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>za.co.mmagon</groupId>
     <artifactId>jwebswing-bit6</artifactId>
     <version>0.0.0_0</version>
     <packaging>jar</packaging>
-
     <name>Bit6 Conferencing Addon</name>
     <description>Synchronous voice and video calling lets users communicate in real-time. Voice and video calls can be
         made app-to-app, with or without the use of phone numbers. Voice calls between apps and landlines or feature
         phones over traditional PSTN lines are also supported.
     </description>
     <url>https://github.com/GedMarc/6Bit</url>
-
-
     <repositories>
         <repository>
             <id>oss.sonatype.org</id>
@@ -31,18 +27,14 @@
             <url>https://www.armin.software/artifactory/libs-snapshot</url>
         </repository>
     </repositories>
-
     <profiles>
         <profile>
             <id>development</id>
-            <properties>
-            </properties>
-
+            <properties></properties>
         </profile>
         <profile>
             <id>unittest-profile</id>
-            <properties>
-            </properties>
+            <properties></properties>
             <build>
                 <plugins>
                     <plugin>
@@ -65,7 +57,6 @@
                                     <stripVersion>true</stripVersion>
                                 </configuration>
                             </execution>
-
                             <execution>
                                 <id>copy-test-libs</id>
                                 <phase>generate-test-resources</phase>
@@ -116,7 +107,6 @@
                         </executions>
                         <version>${maven.javadoc.version}</version>
                     </plugin>
-
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -128,8 +118,7 @@
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
-                                <configuration>
-                                </configuration>
+                                <configuration></configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -137,7 +126,6 @@
             </build>
         </profile>
     </profiles>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <src.dir>src</src.dir>
@@ -148,12 +136,10 @@
         <maven.source.version>2.1.2</maven.source.version>
         <maven.resources.version>3.0.2</maven.resources.version>
         <netbeans.hint.license>gpl30</netbeans.hint.license>
-
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <sonar.host.url>https://www.armin.software/sonar</sonar.host.url>
     </properties>
-
     <build>
         <sourceDirectory>${src.dir}</sourceDirectory>
         <testSourceDirectory>${test.dir}</testSourceDirectory>
@@ -169,7 +155,6 @@
                         </goals>
                     </execution>
                 </executions>
-
                 <version>${maven.jar.version}</version>
             </plugin>
             <plugin>
@@ -191,7 +176,6 @@
                 <version>0.7.9</version>
             </plugin>
         </plugins>
-
         <resources>
             <resource>
                 <directory>jar-resources</directory>
@@ -221,16 +205,14 @@
             </resource>
         </resources>
     </build>
-
     <dependencies>
-
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <type>jar</type>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -238,7 +220,6 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -246,7 +227,6 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
@@ -254,14 +234,12 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>jwebswing</artifactId>
             <version>${project.version}</version>
             <type>jar</type>
         </dependency>
-
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>jwebswing</artifactId>
@@ -269,8 +247,6 @@
             <scope>test</scope>
             <type>test-jar</type>
         </dependency>
-
-
     </dependencies>
     <distributionManagement>
         <snapshotRepository>
@@ -308,7 +284,7 @@
                 <version>0.7.9</version>
                 <reportSets>
                     <reportSet>
-                        <reports>                            <!-- select non-aggregate reports -->
+                        <reports>
                             <report>report</report>
                         </reports>
                     </reportSet>
@@ -317,3 +293,5 @@
         </plugins>
     </reporting>
 </project>
+
+

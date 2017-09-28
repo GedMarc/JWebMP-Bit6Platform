@@ -26,15 +26,15 @@ enum SixBitReferencePool implements ReferencePool
 	 */
 	private SixBitReferencePool()
 	{
-
+	
 	}
-
+	
 	/**
 	 * A new AngularSlimScrollReferencePool with data
 	 */
 	private SixBitReferencePool(String data)
 	{
-
+	
 	}
 	
 	private SixBitReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference)
