@@ -4,7 +4,7 @@
 
     <groupId>za.co.mmagon</groupId>
     <artifactId>jwebswing-bit6</artifactId>
-    <version>0.11.6.1-RELEASE</version>
+    <version>0.0.0_0</version>
     <packaging>jar</packaging>
 
     <name>Bit6 Conferencing Addon</name>
@@ -111,6 +111,7 @@
                                 </goals>
                                 <configuration>
                                     <failOnError>false</failOnError>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
                                 </configuration>
                             </execution>
                         </executions>
@@ -142,6 +143,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <src.dir>src</src.dir>
         <test.dir>test</test.dir>
+        <additionalparam>-Xdoclint:none</additionalparam>
         <maven.jar.version>3.0.2</maven.jar.version>
         <maven.dependency.version>3.0.1</maven.dependency.version>
         <maven.javadoc.version>2.10.4</maven.javadoc.version>
