@@ -20,24 +20,16 @@ enum SixBitReferencePool implements ReferencePool
 	private String data;
 	private JavascriptReference javaScriptReference;
 	private CSSReference cssReference;
-	
+
 	/**
 	 * A new AngularSlimScrollReferencePool
 	 */
-	private SixBitReferencePool()
+	SixBitReferencePool()
 	{
-	
+
 	}
-	
-	/**
-	 * A new AngularSlimScrollReferencePool with data
-	 */
-	private SixBitReferencePool(String data)
-	{
-	
-	}
-	
-	private SixBitReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference)
+
+	SixBitReferencePool(JavascriptReference javaScriptReference, CSSReference cssReference)
 	{
 		this.javaScriptReference = javaScriptReference;
 		if (this.javaScriptReference != null)
@@ -50,31 +42,31 @@ enum SixBitReferencePool implements ReferencePool
 			this.cssReference.setPriority(RequirementsPriority.DontCare);
 		}
 	}
-	
+
 	@Override
 	public JavascriptReference getJavaScriptReference()
 	{
 		return javaScriptReference;
 	}
-	
+
 	@Override
 	public void setJavaScriptReference(JavascriptReference javaScriptReference)
 	{
 		this.javaScriptReference = javaScriptReference;
 	}
-	
+
 	@Override
 	public CSSReference getCssReference()
 	{
 		return cssReference;
 	}
-	
+
 	@Override
 	public void setCssReference(CSSReference cssReference)
 	{
 		this.cssReference = cssReference;
 	}
-	
+
 	/**
 	 * Returns the name or the data contained within
 	 *

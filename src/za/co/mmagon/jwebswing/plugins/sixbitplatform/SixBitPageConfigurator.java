@@ -34,13 +34,13 @@ import java.util.logging.Logger;
 		url = "https://www.akveo.com/products.html")
 public class SixBitPageConfigurator extends PageConfigurator
 {
-	
+
 	private static final Logger log = LogFactory.getLog(SixBitPageConfigurator.class.getName());
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	public static String apiKey = "";
-	
+
+	private static String apiKey = "";
+
 	/*
 	 * Constructs a new SixBitPageConfigurator
 	 */
@@ -48,7 +48,7 @@ public class SixBitPageConfigurator extends PageConfigurator
 	{
 		//Nothing needed
 	}
-	
+
 	/**
 	 * Gets the API Key
 	 *
@@ -58,7 +58,7 @@ public class SixBitPageConfigurator extends PageConfigurator
 	{
 		return apiKey;
 	}
-	
+
 	/**
 	 * Sets the API Key
 	 *
@@ -68,7 +68,7 @@ public class SixBitPageConfigurator extends PageConfigurator
 	{
 		SixBitPageConfigurator.apiKey = apiKey;
 	}
-	
+
 	@Override
 	public Page configure(Page page)
 	{
@@ -78,7 +78,7 @@ public class SixBitPageConfigurator extends PageConfigurator
 			page.getBody().addVariable("b6");
 			page.getBody().getJavascriptReferences().add(SixBitReferencePool.SixBit.getJavaScriptReference());
 		}
-		
+
 		if (apiKey != null && !apiKey.isEmpty())
 		{
 			page.getBody().addFeature(new SixBitSessionConfigureFeature(getApiKey()));
@@ -87,9 +87,10 @@ public class SixBitPageConfigurator extends PageConfigurator
 		{
 			log.severe("6Bit Plugin Not Available. No API Key Supplied. Use SixBitPageConfigurator.setApiKey();");
 		}
-		
+
 		log.finer("Done Six Bit Page Configurator");
 		return page;
 	}
-	
+
+
 }

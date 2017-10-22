@@ -9,11 +9,11 @@ import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
  */
 public class SixBitLoginFeature extends Feature<JavaScriptPart, SixBitLoginFeature>
 {
-	
+
 	private static final long serialVersionUID = 1L;
 	private final String password;
 	private final String username;
-	
+
 	/*
 	 * Constructs a new SixBitLoginFeature
 	 */
@@ -23,7 +23,7 @@ public class SixBitLoginFeature extends Feature<JavaScriptPart, SixBitLoginFeatu
 		this.username = username;
 		this.password = password;
 	}
-	
+
 	@Override
 	protected void assignFunctionsToComponent()
 	{
@@ -41,5 +41,39 @@ public class SixBitLoginFeature extends Feature<JavaScriptPart, SixBitLoginFeatu
 				         + "                loginDone();\n"
 				         + "            }\n"
 				         + "        });");
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof SixBitLoginFeature))
+		{
+			return false;
+		}
+		if (!super.equals(o))
+		{
+			return false;
+		}
+
+		SixBitLoginFeature that = (SixBitLoginFeature) o;
+
+		if (!password.equals(that.password))
+		{
+			return false;
+		}
+		return username.equals(that.username);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int result = super.hashCode();
+		result = 31 * result + password.hashCode();
+		result = 31 * result + username.hashCode();
+		return result;
 	}
 }
