@@ -70,6 +70,7 @@ public class SixBitPageConfigurator extends PageConfigurator
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public Page configure(Page page)
 	{
 		log.finer("Configuring Six Bit Page Configurator");
