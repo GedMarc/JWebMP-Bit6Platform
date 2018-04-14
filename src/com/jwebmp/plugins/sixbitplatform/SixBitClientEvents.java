@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package za.co.mmagon.jwebswing.plugins.sixbitplatform;
+package com.jwebmp.plugins.sixbitplatform;
 
 /**
  * @author Marc Magon
@@ -12,45 +12,45 @@ package za.co.mmagon.jwebswing.plugins.sixbitplatform;
  */
 public interface SixBitClientEvents
 {
-	
+
 	void onCallAnswered();
-	
+
 	void onCallEnd();
-	
+
 	void onCallError();
-	
+
 	void onCallProgres();
-	
+
 	void onChatCreated();
-	
+
 	void onConnect();
-	
+
 	void onConversationChange();
-	
+
 	void onDisconnect();
-	
+
 	void onFileAttach();
-	
+
 	void onGroupChange();
-	
+
 	void onGroupCreated();
-	
+
 	void onGroupMemberAdded();
-	
+
 	void onGroupMemberRe();
-	
+
 	void onIncomingCall();
-	
+
 	void onLoginError();
-	
+
 	void onLoginSuccess();
-	
+
 	void onMessageChange();
-	
+
 	void onMessageSending();
-	
+
 	void onNotification();
-	
+
 	void onVideo();
-	
+
 }

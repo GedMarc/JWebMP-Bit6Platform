@@ -1,4 +1,4 @@
-package za.co.mmagon.jwebswing.plugins.sixbitplatform;
+package com.jwebmp.plugins.sixbitplatform;
 
 /**
  * @author Marc Magon
