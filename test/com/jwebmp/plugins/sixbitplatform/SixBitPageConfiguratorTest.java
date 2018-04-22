@@ -17,7 +17,6 @@
 
 package com.jwebmp.plugins.sixbitplatform;
 
-import com.jwebmp.BaseTestClass;
 import com.jwebmp.Page;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ import org.junit.jupiter.api.Test;
  * @author Marc Magon
  */
 public class SixBitPageConfiguratorTest
-		extends BaseTestClass
+
 {
 
 	public SixBitPageConfiguratorTest()
@@ -35,14 +34,14 @@ public class SixBitPageConfiguratorTest
 	@Test
 	public void testNoApi()
 	{
-		Page p = getInstance();
+		Page p = new Page();
 		System.out.println(p.toString(0));
 	}
 
 	@Test
 	public void testApi()
 	{
-		Page p = getInstance();
+		Page p = new Page();
 		SixBitPageConfigurator.setApiKey("apiKey123");
 		System.out.println(p.toString(0));
 	}
