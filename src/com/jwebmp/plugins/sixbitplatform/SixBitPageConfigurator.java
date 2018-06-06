@@ -19,10 +19,10 @@ package com.jwebmp.plugins.sixbitplatform;
 
 import com.jwebmp.Page;
 import com.jwebmp.PageConfigurator;
+import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.ComponentInformation;
 import com.jwebmp.plugins.PluginInformation;
 import com.jwebmp.plugins.sixbitplatform.features.SixBitSessionConfigureFeature;
-import za.co.mmagon.logger.LogFactory;
 
 import java.util.logging.Logger;
 
