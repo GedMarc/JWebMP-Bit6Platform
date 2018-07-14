@@ -24,8 +24,8 @@ import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
  * @author Marc Magon
  * @since 22 Jun 2017
  */
-public class SixBitLoginFeature
-		extends Feature<JavaScriptPart, SixBitLoginFeature>
+public class SixBitSignupFeature
+		extends Feature<JavaScriptPart, SixBitSignupFeature>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -35,9 +35,9 @@ public class SixBitLoginFeature
 	/*
 	 * Constructs a new SixBitLoginFeature
 	 */
-	public SixBitLoginFeature(String username, String password)
+	public SixBitSignupFeature(String username, String password)
 	{
-		super("6BitLogin");
+		super("6BitSignup");
 		this.username = username;
 		this.password = password;
 	}
@@ -46,8 +46,8 @@ public class SixBitLoginFeature
 	public int hashCode()
 	{
 		int result = super.hashCode();
-		result = 31 * result + password.hashCode();
-		result = 31 * result + username.hashCode();
+		result = 31 * result + (password != null ? password.hashCode() : 0);
+		result = 31 * result + (username != null ? username.hashCode() : 0);
 		return result;
 	}
 
@@ -58,7 +58,7 @@ public class SixBitLoginFeature
 		{
 			return true;
 		}
-		if (!(o instanceof SixBitLoginFeature))
+		if (!(o instanceof SixBitSignupFeature))
 		{
 			return false;
 		}
@@ -67,19 +67,36 @@ public class SixBitLoginFeature
 			return false;
 		}
 
-		SixBitLoginFeature that = (SixBitLoginFeature) o;
+		SixBitSignupFeature that = (SixBitSignupFeature) o;
 
-		if (!password.equals(that.password))
+		if (password != null ? !password.equals(that.password) : that.password != null)
 		{
 			return false;
 		}
-		return username.equals(that.username);
+		return username != null ? username.equals(that.username) : that.username == null;
 	}
 
 	@Override
 	protected void assignFunctionsToComponent()
 	{
 		addQuery(
-				"b6.session['login']({'identity': 'usr:" + username + "', 'password': '" + password + "'}, function(err) {\n" + "            if (err) {\n" + "                console.log('auth error', err);\n" + "                var msg = isNewUser ? 'New user' : 'Login';\n" + "                msg += ': ' + err.message;\n" + "                $('#authError').html('<p>' + msg + '</p>');\n" + "            }\n" + "            else {\n" + "                console.log('auth done');\n" + "                $('#authUsername').val('');\n" + "                $('#authPassword').val('');\n" + "                loginDone();\n" + "            }\n" + "        });");
+				"b6.session['signup']({'identity': 'usr:" +
+				username +
+				"', 'password': '" +
+				password +
+				"'}, function(err) {\n" +
+				"            if (err) {\n" +
+				"                console.log('auth error', err);\n" +
+				"                var msg = isNewUser ? 'New user' : 'Login';\n" +
+				"                msg += ': ' + err.message;\n" +
+				"                $('#authError').html('<p>' + msg + '</p>');\n" +
+				"            }\n" +
+				"            else {\n" +
+				"                console.log('auth done');\n" +
+				"                $('#authUsername').val('');\n" +
+				"                $('#authPassword').val('');\n" +
+				"                loginDone();\n" +
+				"            }\n" +
+				"        });");
 	}
 }

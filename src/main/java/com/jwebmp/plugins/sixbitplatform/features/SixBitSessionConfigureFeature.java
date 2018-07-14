@@ -46,5 +46,4 @@ public class SixBitSessionConfigureFeature
 		addQuery("b6 = new bit6.Client({apiKey:'" + SixBitPageConfigurator.getApiKey() + "'});" + getNewLine());
 	}
 
-
 }

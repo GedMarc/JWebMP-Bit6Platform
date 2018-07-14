@@ -114,5 +114,4 @@ public class SixBitPageConfigurator
 		SixBitPageConfigurator.apiKey = apiKey;
 	}
 
-
 }
