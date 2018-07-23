@@ -18,9 +18,9 @@
 package com.jwebmp.plugins.sixbitplatform;
 
 import com.jwebmp.core.Page;
-import com.jwebmp.core.PageConfigurator;
 import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.sixbitplatform.features.SixBitSessionConfigureFeature;
 
@@ -49,12 +49,10 @@ import java.util.logging.Logger;
 		description = "Auto Focus Components with Angular",
 		url = "https://www.akveo.com/products.html")
 public class SixBitPageConfigurator
-		extends PageConfigurator
+		implements IPageConfigurator
 {
 
 	private static final Logger log = LogFactory.getLog(SixBitPageConfigurator.class.getName());
-
-	private static final long serialVersionUID = 1L;
 
 	private static String apiKey = "";
 
