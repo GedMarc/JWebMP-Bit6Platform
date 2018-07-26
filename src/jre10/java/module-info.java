@@ -11,4 +11,7 @@ module com.jwebmp.plugins.bit6 {
 
 	provides IPageConfigurator with SixBitPageConfigurator;
 
+	opens com.jwebmp.plugins.sixbitplatform to com.fasterxml.jackson.databind,com.jwebmp.core;
+	opens com.jwebmp.plugins.sixbitplatform.events to com.fasterxml.jackson.databind,com.jwebmp.core;
+	opens com.jwebmp.plugins.sixbitplatform.features to com.fasterxml.jackson.databind,com.jwebmp.core;
 }
