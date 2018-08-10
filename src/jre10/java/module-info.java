@@ -8,6 +8,7 @@ module com.jwebmp.plugins.bit6 {
 	requires com.jwebmp.core;
 	requires com.jwebmp.logmaster;
 	requires java.logging;
+	requires java.validation;
 
 	provides IPageConfigurator with SixBitPageConfigurator;
 

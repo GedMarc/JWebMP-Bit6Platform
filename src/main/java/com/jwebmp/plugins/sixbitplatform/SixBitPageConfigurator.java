@@ -24,6 +24,7 @@ import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.sixbitplatform.features.SixBitSessionConfigureFeature;
 
+import javax.validation.constraints.NotNull;
 import java.util.logging.Logger;
 
 /**
@@ -64,6 +65,7 @@ public class SixBitPageConfigurator
 		//Nothing needed
 	}
 
+	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
 	public Page configure(Page page)
