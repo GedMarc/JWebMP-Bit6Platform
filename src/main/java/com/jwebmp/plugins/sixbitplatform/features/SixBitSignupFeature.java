@@ -18,6 +18,7 @@
 package com.jwebmp.plugins.sixbitplatform.features;
 
 import com.jwebmp.core.Feature;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
 /**
@@ -25,7 +26,7 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
  * @since 22 Jun 2017
  */
 public class SixBitSignupFeature
-		extends Feature<JavaScriptPart, SixBitSignupFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart, SixBitSignupFeature>
 {
 
 	private static final long serialVersionUID = 1L;

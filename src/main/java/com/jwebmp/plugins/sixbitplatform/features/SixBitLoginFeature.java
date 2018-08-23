@@ -18,6 +18,7 @@
 package com.jwebmp.plugins.sixbitplatform.features;
 
 import com.jwebmp.core.Feature;
+import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
 /**
@@ -25,7 +26,7 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
  * @since 22 Jun 2017
  */
 public class SixBitLoginFeature
-		extends Feature<JavaScriptPart, SixBitLoginFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart, SixBitLoginFeature>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -45,35 +46,13 @@ public class SixBitLoginFeature
 	@Override
 	public int hashCode()
 	{
-		int result = super.hashCode();
-		result = 31 * result + password.hashCode();
-		result = 31 * result + username.hashCode();
-		return result;
+		return super.hashCode();
 	}
 
 	@Override
-	public boolean equals(Object o)
+	public boolean equals(Object obj)
 	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof SixBitLoginFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		SixBitLoginFeature that = (SixBitLoginFeature) o;
-
-		if (!password.equals(that.password))
-		{
-			return false;
-		}
-		return username.equals(that.username);
+		return super.equals(obj);
 	}
 
 	@Override
