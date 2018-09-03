@@ -52,9 +52,11 @@ import java.util.logging.Logger;
 public class SixBitPageConfigurator
 		implements IPageConfigurator
 {
-
 	private static final Logger log = LogFactory.getLog(SixBitPageConfigurator.class.getName());
-
+	/**
+	 * If this configurator is enabled
+	 */
+	private static boolean enabled = true;
 	private static String apiKey = "";
 
 	/*
@@ -65,12 +67,37 @@ public class SixBitPageConfigurator
 		//Nothing needed
 	}
 
+	/**
+	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @return the enabled (type boolean) of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static boolean isEnabled()
+	{
+		return SixBitPageConfigurator.enabled;
+	}
+
+	/**
+	 * Method setEnabled sets the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @param mustEnable
+	 * 		the enabled of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static void setEnabled(boolean mustEnable)
+	{
+		SixBitPageConfigurator.enabled = mustEnable;
+	}
+
 	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
 	public Page configure(Page page)
 	{
-		log.finer("Configuring Six Bit Page Configurator");
+		SixBitPageConfigurator.log.finer("Configuring Six Bit Page Configurator");
 		if (!page.isConfigured())
 		{
 			page.getBody()
@@ -80,18 +107,24 @@ public class SixBitPageConfigurator
 			    .add(SixBitReferencePool.SixBit.getJavaScriptReference());
 		}
 
-		if (apiKey != null && !apiKey.isEmpty())
+		if (SixBitPageConfigurator.apiKey != null && !SixBitPageConfigurator.apiKey.isEmpty())
 		{
 			page.getBody()
-			    .addFeature(new SixBitSessionConfigureFeature(getApiKey()));
+			    .addFeature(new SixBitSessionConfigureFeature(SixBitPageConfigurator.getApiKey()));
 		}
 		else
 		{
-			log.severe("6Bit Plugin Not Available. No API Key Supplied. Use SixBitPageConfigurator.setApiKey();");
+			SixBitPageConfigurator.log.severe("6Bit Plugin Not Available. No API Key Supplied. Use SixBitPageConfigurator.setApiKey();");
 		}
 
-		log.finer("Done Six Bit Page Configurator");
+		SixBitPageConfigurator.log.finer("Done Six Bit Page Configurator");
 		return page;
+	}
+
+	@Override
+	public boolean enabled()
+	{
+		return SixBitPageConfigurator.enabled;
 	}
 
 	/**
@@ -101,7 +134,7 @@ public class SixBitPageConfigurator
 	 */
 	public static String getApiKey()
 	{
-		return apiKey;
+		return SixBitPageConfigurator.apiKey;
 	}
 
 	/**
