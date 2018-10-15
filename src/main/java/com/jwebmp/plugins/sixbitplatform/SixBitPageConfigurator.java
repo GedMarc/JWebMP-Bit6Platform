@@ -40,8 +40,8 @@ import java.util.logging.Logger;
 		pluginCategories = "angular,focus,ui,web ui, framework",
 		pluginSubtitle = "Auto Focus Components with Angular",
 		pluginSourceUrl = "https://www.akveo.com/products.html",
-		pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-Angular-Auto-Focus/wiki",
-		pluginGitUrl = "https://github.com/GedMarc/JWebSwing-Angular-Auto-Focus",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-Angular-Auto-Focus/wiki",
+		pluginGitUrl = "https://github.com/GedMarc/JWebMP-Angular-Auto-Focus",
 		pluginIconUrl = "",
 		pluginIconImageUrl = "",
 		pluginOriginalHomepage = "https://www.akveo.com/products.html",
@@ -50,7 +50,7 @@ import java.util.logging.Logger;
 		description = "Auto Focus Components with Angular",
 		url = "https://www.akveo.com/products.html")
 public class SixBitPageConfigurator
-		implements IPageConfigurator
+		implements IPageConfigurator<SixBitPageConfigurator>
 {
 	private static final Logger log = LogFactory.getLog(SixBitPageConfigurator.class.getName());
 	/**
