@@ -29,7 +29,7 @@ public class SixBitSignupFeature
 		extends Feature<GlobalFeatures, JavaScriptPart, SixBitSignupFeature>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	private final String password;
 	private final String username;
 
