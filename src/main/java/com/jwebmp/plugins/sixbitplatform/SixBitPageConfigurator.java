@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Marc Magon
+ * Copyright (C) 2017 GedMarc
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 /**
  * Allows for elements to have an auto expand by adding a class
  *
- * @author Marc Magon
+ * @author GedMarc
  * @since 16 Jun 2017
  */
 @PluginInformation(pluginName = "Angular Auto Focus",

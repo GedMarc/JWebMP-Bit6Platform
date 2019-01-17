@@ -8,7 +8,7 @@ import com.jwebmp.core.base.servlets.interfaces.ReferencePool;
 /**
  * References for angular
  *
- * @author Marc Magon
+ * @author GedMarc
  * @since 09 Jun 2017
  */
 enum SixBitReferencePool

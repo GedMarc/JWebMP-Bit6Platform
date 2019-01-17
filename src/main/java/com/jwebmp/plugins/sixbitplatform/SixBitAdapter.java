@@ -1,7 +1,7 @@
 package com.jwebmp.plugins.sixbitplatform;
 
 /**
- * @author Marc Magon
+ * @author GedMarc
  * @since 22 Jun 2017
  */
 public abstract class SixBitAdapter
