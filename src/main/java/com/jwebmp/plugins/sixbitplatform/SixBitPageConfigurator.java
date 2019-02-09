@@ -98,7 +98,7 @@ public class SixBitPageConfigurator
 	public Page configure(Page page)
 	{
 		SixBitPageConfigurator.log.finer("Configuring Six Bit Page Configurator");
-		if (!page.isConfigured())
+		if (!page.isConfigured() && enabled())
 		{
 			page.getBody()
 			    .addVariable("b6");
