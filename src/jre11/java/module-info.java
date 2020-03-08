@@ -11,7 +11,6 @@ module com.jwebmp.plugins.bit6 {
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.sixbitplatform.SixBitPageConfigurator;
 
 	provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.sixbitplatform.implementations.Bit6ExclusionsModule;
-	provides com.guicedee.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.plugins.sixbitplatform.implementations.Bit6ExclusionsModule;
 
 	opens com.jwebmp.plugins.sixbitplatform to com.fasterxml.jackson.databind, com.jwebmp.core;
 	//opens com.jwebmp.plugins.sixbitplatform.events to com.fasterxml.jackson.databind,com.jwebmp.core;
