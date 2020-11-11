@@ -24,7 +24,7 @@ import com.jwebmp.core.services.IPageConfigurator;
 import com.guicedee.logger.LogFactory;
 import com.jwebmp.plugins.sixbitplatform.features.SixBitSessionConfigureFeature;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.logging.Logger;
 
 /**
