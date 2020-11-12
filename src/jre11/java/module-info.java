@@ -5,7 +5,7 @@ module com.jwebmp.plugins.bit6 {
 	requires com.jwebmp.core;
 	requires com.guicedee.logmaster;
 	requires java.logging;
-	requires java.validation;
+	requires jakarta.validation;
 	requires com.guicedee.guicedinjection;
 
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.sixbitplatform.SixBitPageConfigurator;
