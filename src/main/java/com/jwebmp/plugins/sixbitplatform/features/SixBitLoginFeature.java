@@ -26,7 +26,7 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
  * @since 22 Jun 2017
  */
 public class SixBitLoginFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, SixBitLoginFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, SixBitLoginFeature>
 {
 
 

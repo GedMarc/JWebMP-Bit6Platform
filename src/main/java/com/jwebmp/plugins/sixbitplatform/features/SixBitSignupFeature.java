@@ -26,10 +26,8 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
  * @since 22 Jun 2017
  */
 public class SixBitSignupFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, SixBitSignupFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, SixBitSignupFeature>
 {
-
-
 	private final String password;
 	private final String username;
 
@@ -41,40 +39,6 @@ public class SixBitSignupFeature
 		super("6BitSignup");
 		this.username = username;
 		this.password = password;
-	}
-
-	@Override
-	public int hashCode()
-	{
-		int result = super.hashCode();
-		result = 31 * result + (password != null ? password.hashCode() : 0);
-		result = 31 * result + (username != null ? username.hashCode() : 0);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object o)
-	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (!(o instanceof SixBitSignupFeature))
-		{
-			return false;
-		}
-		if (!super.equals(o))
-		{
-			return false;
-		}
-
-		SixBitSignupFeature that = (SixBitSignupFeature) o;
-
-		if (password != null ? !password.equals(that.password) : that.password != null)
-		{
-			return false;
-		}
-		return username != null ? username.equals(that.username) : that.username == null;
 	}
 
 	@Override

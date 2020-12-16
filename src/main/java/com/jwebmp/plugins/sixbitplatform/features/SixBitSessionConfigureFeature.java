@@ -27,7 +27,7 @@ import com.jwebmp.plugins.sixbitplatform.SixBitPageConfigurator;
  * @since 22 Jun 2017
  */
 public class SixBitSessionConfigureFeature
-		extends Feature<GlobalFeatures, JavaScriptPart, SixBitSessionConfigureFeature>
+		extends Feature<GlobalFeatures, JavaScriptPart<?>, SixBitSessionConfigureFeature>
 {
 
 

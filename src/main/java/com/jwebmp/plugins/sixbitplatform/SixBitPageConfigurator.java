@@ -20,6 +20,7 @@ package com.jwebmp.plugins.sixbitplatform;
 import com.jwebmp.core.Page;
 import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPageConfigurator;
 import com.guicedee.logger.LogFactory;
 import com.jwebmp.plugins.sixbitplatform.features.SixBitSessionConfigureFeature;
@@ -33,22 +34,28 @@ import java.util.logging.Logger;
  * @author GedMarc
  * @since 16 Jun 2017
  */
-@PluginInformation(pluginName = "Angular Auto Focus",
-		pluginDescription = "Auto Focus Components with Angular",
-		pluginUniqueName = "jwebswing-angular-auto-focus",
+@PluginInformation(pluginName = "Bit6 Conferencing",
+		pluginDescription = "Bit6 is a real-time, cloud-based communications-as-a-service platform that allows mobile and web application developers" +
+				" to quickly and easily add voice/video calling, " +
+				"texting, and multimedia messaging capabilities into their apps.",
+		pluginUniqueName = "jwebmp-bit6",
 		pluginVersion = "1.0.0",
-		pluginCategories = "angular,focus,ui,web ui, framework",
-		pluginSubtitle = "Auto Focus Components with Angular",
+		pluginCategories = "conferencing,video,calling",
+		pluginSubtitle = "Bit6 JS SDK",
 		pluginSourceUrl = "https://www.akveo.com/products.html",
-		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-Angular-Auto-Focus/wiki",
-		pluginGitUrl = "https://github.com/GedMarc/JWebMP-Angular-Auto-Focus",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-Bit6Platform/wiki",
+		pluginGitUrl = "https://github.com/bit6/bit6-js-sdk",
 		pluginIconUrl = "",
 		pluginIconImageUrl = "",
-		pluginOriginalHomepage = "https://www.akveo.com/products.html",
-		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/AngularAutoFocus.jar/download")
-@ComponentInformation(name = "Angular Auto Focus",
-		description = "Auto Focus Components with Angular",
-		url = "https://www.akveo.com/products.html")
+		pluginOriginalHomepage = "https://github.com/bit6/bit6-js-sdk",
+		pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.javascript/jwebmp-bit6",
+		pluginGroupId = "com.jwebmp.plugins.javascript",
+		pluginArtifactId = "jwebmp-bit6",
+		pluginModuleName = "com.jwebmp.plugins.bit6",
+		pluginStatus = PluginStatus.Deprecated
+)
+@ComponentInformation(name = "Bit 6 Video Conferencing",
+		description = "Component to allow integration with bit 6")
 public class SixBitPageConfigurator
 		implements IPageConfigurator<SixBitPageConfigurator>
 {
