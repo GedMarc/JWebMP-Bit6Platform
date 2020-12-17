@@ -34,14 +34,14 @@ public class SixBitPageConfiguratorTest
 	@Test
 	public void testNoApi()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		System.out.println(p.toString(0));
 	}
 
 	@Test
 	public void testApi()
 	{
-		Page p = new Page();
+		Page<?> p = new Page();
 		SixBitPageConfigurator.setApiKey("apiKey123");
 		System.out.println(p.toString(0));
 	}

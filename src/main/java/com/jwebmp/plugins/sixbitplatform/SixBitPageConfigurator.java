@@ -102,7 +102,7 @@ public class SixBitPageConfigurator
 	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
-	public Page configure(Page page)
+	 public Page<?> configure(Page<?> page)
 	{
 		SixBitPageConfigurator.log.finer("Configuring Six Bit Page Configurator");
 		if (!page.isConfigured() && enabled())
