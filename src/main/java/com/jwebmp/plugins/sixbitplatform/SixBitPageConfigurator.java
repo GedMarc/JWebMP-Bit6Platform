@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 		pluginDescription = "Bit6 is a real-time, cloud-based communications-as-a-service platform that allows mobile and web application developers" +
 				" to quickly and easily add voice/video calling, " +
 				"texting, and multimedia messaging capabilities into their apps.",
-		pluginUniqueName = "jwebmp-bit6",
+		pluginUniqueName = "bit6",
 		pluginVersion = "1.0.0",
 		pluginCategories = "conferencing,video,calling",
 		pluginSubtitle = "Bit6 JS SDK",
