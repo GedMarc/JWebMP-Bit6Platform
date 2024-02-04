@@ -22,7 +22,7 @@ import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPageConfigurator;
-import com.guicedee.logger.LogFactory;
+
 import com.jwebmp.plugins.sixbitplatform.features.SixBitSessionConfigureFeature;
 
 import jakarta.validation.constraints.NotNull;
